@@ -1,0 +1,307 @@
+<!DOCTYPE HTML>
+<!--
+	Halcyonic by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Registration Page</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="src/assets/css/main.css" />
+	</head>
+	<body class="subpage">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<section id="header">
+					<div class="container">
+						<div class="row">
+							<div class="col-12">
+
+								<!-- Logo -->
+									<h1><a href="index.html" id="logo">UniEnroll</a></h1>
+
+								<!-- Nav -->
+									<nav id="nav">
+										<a href="index.html">Homepage</a>
+										<a href="registration.html">Registration</a>
+										<a href="courses.html">My Courses</a>
+										<a href="twocolumn2.html">Setting</a>
+										    <a href="onecolumn.html">
+												<img src="src/images/notifications_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg" alt="One Column" width="20" height="20">
+											</a>
+									</nav>
+							</div>
+						</div>
+					</div>
+				</section>
+
+			<!-- Content -->
+				<section id="content">
+					<div class="container">
+						<div class="row">
+							<div class="col-3 col-12-medium">
+
+								<!-- Sidebar -->
+									<section>
+										<header>
+											<h2>Quick Links</h2>
+										</header>
+										<ul class="link-list">
+											<li><a href="courses.html">Current Professors</a></li>
+											<li><a href="#">Fee Payment</a></li>
+											<li><a href="#">Courses Catalog</a></li>
+										</ul>
+									</section>
+									<!-- <section>
+										<header>
+											<h2>Ipsum Dolor</h2>
+										</header>
+										<p>
+											Vehicula fermentum ligula at pretium. Suspendisse semper iaculis eros, eu aliquam
+											iaculis. Phasellus ultrices diam sit amet orci lacinia sed consequat.
+										</p>
+										<ul class="link-list">
+											<li><a href="#">Sed dolore viverra</a></li>
+											<li><a href="#">Ligula non varius</a></li>
+											<li><a href="#">Dis parturient montes</a></li>
+											<li><a href="#">Nascetur ridiculus</a></li>
+										</ul>
+									</section> -->
+									
+
+							</div>
+							<div class="col-9 col-12-medium imp-medium">
+
+								<!-- Main Content -->
+								 <!--Over Here Chat GPT this section is where I wanted a table-->
+								<section>
+									<header>
+										<h2>Course Registration</h2>
+										<h3>View and manage your registered courses</h3>
+									</header>
+
+									<!-- Registration Table -->
+									<div class="table-wrapper">
+										<table>
+											<thead>
+												<tr>
+													<th>Course Code</th>
+													<th>Course Name</th>
+													<th>Credits</th>
+													<th>Instructor</th>
+													<th>Status</th>
+													<th>Action</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>CS101</td>
+													<td>Intro to Computer Science</td>
+													<td>3</td>
+													<td>Dr. Alan Smith</td>
+													<td>Registered</td>
+													<td><a href="#" class="button small">Drop</a></td>
+												</tr>
+												<tr>
+													<td>MATH201</td>
+													<td>Calculus II</td>
+													<td>4</td>
+													<td>Prof. Jane Doe</td>
+													<td>Registered</td>
+													<td><a href="#" class="button small">Drop</a></td>
+												</tr>
+												<tr>
+													<td>ENG103</td>
+													<td>English Composition</td>
+													<td>2</td>
+													<td>Dr. William King</td>
+													<td>Waitlisted</td>
+													<td><a href="#" class="button small disabled">N/A</a></td>
+												</tr>
+											</tbody>
+										</table>
+										<br>
+											<a href="#">
+												<img src="src/images/add_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg" alt="One Column" width="20" height="20" id="addCourse">
+											</a>
+									</div>
+								</section>
+								<!--Over here Deepseek-->
+								<div style="display: flex; justify-content: space-between; margin-top: 20px;">
+									<input type="button" value="Cancel" id="negative">
+									<input type="button" value="Accept" id="positive">
+								</div>
+							</div>
+						</div>
+					</div>
+				<div id="myModal" class="modal">
+					<div class="modal-content">
+						<span class="close">&times;</span>
+						<h2>Courses</h2>
+															<div class="table-wrapper">
+										<table>
+											<thead>
+												<tr>
+													<th>Course Code</th>
+													<th>Course Name</th>
+													<th>Credits</th>
+													<th>Instructor</th>
+													<th>Action</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>CS201</td>
+													<td>Advanced Computer</td>
+													<td>3</td>
+													<td>Dr. Umbreen</td>
+													<td><a href="#" class="button small">Add</a></td>
+												</tr>
+												<tr>
+													<td>MATH201</td>
+													<td>Calculus III</td>
+													<td>4</td>
+													<td>Prof. Jane Doe</td>
+													<td><a href="#" class="button small">Add</a></td>
+												</tr>
+												<tr>
+													<td>ENGR104</td>
+													<td>Advance Physics</td>
+													<td>4</td>
+													<td>Prof. Sam Jetstream</td>
+													<td><a href="#" class="button small">Add</a></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+						<!-- <p></p> -->
+						<div class="modal-buttons">
+						<button id="confirmAccept">Add Course</button>
+						<button id="cancelAccept">Cancel</button>
+						</div>
+					</div>
+				</div>
+				</section>
+
+
+			<!-- Footer -->
+				<section id="footer">
+					<div class="container">
+						<div class="row">
+							<div class="col-8 col-12-medium">
+
+								<!-- Links -->
+									<!-- <section>
+										<h2>Links to Important Stuff</h2>
+										<div>
+											<div class="row">
+												<div class="col-3 col-12-small">
+													<ul class="link-list last-child">
+														<li><a href="#">Neque amet dapibus</a></li>
+														<li><a href="#">Sed mattis quis rutrum</a></li>
+														<li><a href="#">Accumsan suspendisse</a></li>
+														<li><a href="#">Eu varius vitae magna</a></li>
+													</ul>
+												</div>
+												<div class="col-3 col-12-small">
+													<ul class="link-list last-child">
+														<li><a href="#">Neque amet dapibus</a></li>
+														<li><a href="#">Sed mattis quis rutrum</a></li>
+														<li><a href="#">Accumsan suspendisse</a></li>
+														<li><a href="#">Eu varius vitae magna</a></li>
+													</ul>
+												</div>
+												<div class="col-3 col-12-small">
+													<ul class="link-list last-child">
+														<li><a href="#">Neque amet dapibus</a></li>
+														<li><a href="#">Sed mattis quis rutrum</a></li>
+														<li><a href="#">Accumsan suspendisse</a></li>
+														<li><a href="#">Eu varius vitae magna</a></li>
+													</ul>
+												</div>
+												<div class="col-3 col-12-small">
+													<ul class="link-list last-child">
+														<li><a href="#">Neque amet dapibus</a></li>
+														<li><a href="#">Sed mattis quis rutrum</a></li>
+														<li><a href="#">Accumsan suspendisse</a></li>
+														<li><a href="#">Eu varius vitae magna</a></li>
+													</ul>
+												</div>
+											</div>
+										</div>
+									</section> -->
+
+							</div>
+							<div class="col-4 col-12-medium imp-medium">
+
+								<!-- Blurb -->
+									<!-- <section>
+										<h2>An Informative Text Blurb</h2>
+										<p>
+											Duis neque nisi, dapibus sed mattis quis, rutrum accumsan sed. Suspendisse eu
+											varius nibh. Suspendisse vitae magna eget odio amet mollis. Duis neque nisi,
+											dapibus sed mattis quis, sed rutrum accumsan sed. Suspendisse eu varius nibh
+											lorem ipsum amet dolor sit amet lorem ipsum consequat gravida justo mollis.
+										</p>
+									</section> -->
+
+							</div>
+						</div>
+					</div>
+				</section>
+
+			<!-- Copyright -->
+			<div id="copyright">
+				&copy; UniEnroll. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+			</div>
+
+		</div>
+
+		<!-- Scripts -->
+			<script>
+			// Get modal elements
+			const modal = document.getElementById("myModal");
+			const addBtn = document.getElementById("addCourse");
+			const closeBtn = document.getElementsByClassName("close")[0];
+			const confirmBtn = document.getElementById("confirmAccept");
+			const cancelBtn = document.getElementById("cancelAccept");
+
+			// When user clicks Accept button, open modal 
+			addBtn.onclick = function() {
+				modal.style.display = "block";
+			}
+
+			// When user clicks on (x), close modal
+			closeBtn.onclick = function() {
+				modal.style.display = "none";
+			}
+
+			// When user clicks Cancel button in modal, close modal
+			cancelBtn.onclick = function() {
+				modal.style.display = "none";
+			}
+
+			// When user clicks Confirm button in modal
+			confirmBtn.onclick = function() {
+				alert("Changes accepted!"); // Replace with your actual accept logic
+				modal.style.display = "none";
+			}
+
+			// When user clicks anywhere outside modal, close it
+			window.onclick = function(event) {
+				if (event.target == modal) {
+				modal.style.display = "none";
+				}
+			}
+			</script>
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

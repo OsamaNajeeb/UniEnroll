@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<!--
+	UniEnroll - Student Course Registration Portal
+	Modified from Halcyonic by HTML5 UP
+-->
+<html>
+	<head>
+		<title>UniEnroll - Student Login</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="src/assets/css/main.css" />
+		<style>
+			.centered-container {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				min-height: 70vh;
+			}
+			.auth-box {
+				width: 100%;
+				max-width: 500px;
+				margin: 0 auto;
+				padding: 2rem;
+				box-shadow: 0 0 20px rgba(0,0,0,0.1);
+				border-radius: 8px;
+				background: white;
+			}
+			.auth-header {
+				text-align: center;
+				margin-bottom: 2rem;
+			}
+			.auth-footer {
+				text-align: center;
+				margin-top: 1.5rem;
+			}
+			.centered-button-container {
+				display: flex;
+				justify-content: center;
+				width: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="page-wrapper">
+
+			<!-- Main Content -->
+			<section id="content">
+				<div class="container">
+					<div class="row aln-center centered-container">
+						<div class="col-8 col-12-medium">
+							<div class="auth-box">
+								<!-- Login Form -->
+								<div id="login-form">
+									<div class="auth-header">
+										<h2>Login</h2>
+									</div>
+									
+									<form id="login" method="post" action="/api/auth/login">
+										<div class="row gtr-uniform">
+											<div class="col-12">
+												<input type="text" name="username" id="username" value="" style="width: 100%;" placeholder="Enter your university ID" required />
+											</div>
+											<div class="col-12">
+												<input type="password" name="password" id="password" value="" style="width: 100%;" placeholder="Enter your password" required />
+											</div>
+											<div class="col-12">
+												<div class="centered-button-container">
+													<ul class="actions">
+														<li><input type="submit" value="Log In" class="primary" id="negative"/></li>
+													</ul>
+												</div>
+											</div>
+											<div class="col-12" style="text-align: center;">
+												<a href="#forgot-password">Forgot Password?</a>
+											</div>
+										</div>
+									</form>
+									
+									<div class="auth-footer">
+										<p>New student?&nbsp;&nbsp;&nbsp; <a href="signup.html">Create an account</a></p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Copyright -->
+			<div id="copyright">
+				&copy; UniEnroll. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+			</div>
+
+		</div>
+
+		<!-- Scripts -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+	</body>
+</html>
