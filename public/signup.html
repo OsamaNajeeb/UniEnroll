@@ -1,8 +1,5 @@
 <!DOCTYPE HTML>
-<!--
-	UniEnroll - Student Course Registration Portal
-	Modified from Halcyonic by HTML5 UP
--->
+
 <html>
 	<head>
 		<title>UniEnroll - Student Login</title>
@@ -52,32 +49,32 @@
 								<!-- Login Form -->
 								<div id="login-form">
 									<div class="auth-header">
-										<h2>Login</h2>
+										<h2>Sign Up</h2>
 									</div>
 									
-									<form id="login" method="post" action="/api/auth/login">
+									<form id="signup-form">
 										<div class="row gtr-uniform">
 											<div class="col-12">
-												<input type="text" name="username" id="username" value="" style="width: 100%;" placeholder="Enter your university ID" required />
+												<input type="text" name="username" id="username" style="width: 100%;" placeholder="Enter university ID" required />
 											</div>
 											<div class="col-12">
-												<input type="password" name="password" id="password" value="" style="width: 100%;" placeholder="Enter your password" required />
+												<input type="password" name="password" id="password" style="width: 100%;" placeholder="Enter password" required />
+											</div>
+                      <div class="col-12">
+												<input type="password" name="password" id="confirm-password" style="width: 100%;" placeholder="Confirm Password" required />
 											</div>
 											<div class="col-12">
 												<div class="centered-button-container">
 													<ul class="actions">
-														<li><input type="submit" value="Log In" class="primary" id="negative"/></li>
+														<li><input type="submit" value="Sign Up" class="primary" id="negative"/></li>
 													</ul>
 												</div>
-											</div>
-											<div class="col-12" style="text-align: center;">
-												<a href="#forgot-password">Forgot Password?</a>
 											</div>
 										</div>
 									</form>
 									
 									<div class="auth-footer">
-										<p>New student?&nbsp;&nbsp;&nbsp; <a href="signup.html">Create an account</a></p>
+										<p>Already have an account?&nbsp;&nbsp;&nbsp; <a href="signin.html">Sign in here!</a></p>
 									</div>
 								</div>
 							</div>
@@ -92,12 +89,12 @@
 			</div>
 
 		</div>
-
 		<!-- Scripts -->
-		<script src="assets/js/jquery.min.js"></script>
-		<script src="assets/js/browser.min.js"></script>
-		<script src="assets/js/breakpoints.min.js"></script>
-		<script src="assets/js/util.js"></script>
-		<script src="assets/js/main.js"></script>
+		<script src="src/assets/js/jquery.min.js"></script>
+		<script src="src/assets/js/signupval.js"></script>
+		<script src="src/assets/js/browser.min.js"></script>
+		<script src="src/assets/js/breakpoints.min.js"></script>
+		<script src="src/assets/js/util.js"></script>
+		<script src="src/assets/js/main.js"></script>
 	</body>
 </html>
