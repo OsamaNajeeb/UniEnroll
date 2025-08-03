@@ -12,6 +12,11 @@ document
       return;
     }
 
+    if (password.length < 6) {
+      alert("Password must be at least 6 characters long.");
+      return;
+    }
+
     try {
       const res = await fetch("/api/auth/signup", {
         method: "POST",
