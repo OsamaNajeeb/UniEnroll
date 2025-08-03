@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const data = await res.json();
 
         if (res.ok) {
+          localStorage.setItem("username", username); // Save for later use
           alert("Login successful!");
           window.location.href = "registration.html";
         } else {

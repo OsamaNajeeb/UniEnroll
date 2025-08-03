@@ -25,7 +25,7 @@
 
 								<!-- Nav -->
 									<nav id="nav">
-										<a href="index.html">Homepage</a>
+										<a href="signin.html">Homepage</a>
 										<a href="registration.html">Registration</a>
 										<a href="courses.html">My Courses</a>
 										<a href="twocolumn2.html">Setting</a>
@@ -76,7 +76,6 @@
 							<div class="col-9 col-12-medium imp-medium">
 
 								<!-- Main Content -->
-								 <!--Over Here Chat GPT this section is where I wanted a table-->
 								<section>
 									<header>
 										<h2>Course Registration</h2>
@@ -97,30 +96,6 @@
 												</tr>
 											</thead>
 											<tbody>
-												<tr>
-													<td>CS101</td>
-													<td>Intro to Computer Science</td>
-													<td>3</td>
-													<td>Dr. Alan Smith</td>
-													<td>Registered</td>
-													<td><a href="#" class="button small">Drop</a></td>
-												</tr>
-												<tr>
-													<td>MATH201</td>
-													<td>Calculus II</td>
-													<td>4</td>
-													<td>Prof. Jane Doe</td>
-													<td>Registered</td>
-													<td><a href="#" class="button small">Drop</a></td>
-												</tr>
-												<tr>
-													<td>ENG103</td>
-													<td>English Composition</td>
-													<td>2</td>
-													<td>Dr. William King</td>
-													<td>Waitlisted</td>
-													<td><a href="#" class="button small disabled">N/A</a></td>
-												</tr>
 											</tbody>
 										</table>
 										<br>
@@ -153,7 +128,6 @@
 												</tr>
 											</thead>
 											<tbody>
-												<tr>
 													<td>CS201</td>
 													<td>Advanced Computer</td>
 													<td>3</td>
@@ -173,7 +147,7 @@
 													<td>4</td>
 													<td>Prof. Sam Jetstream</td>
 													<td><a href="#" class="button small">Add</a></td>
-												</tr>
+												</tr> -->
 											</tbody>
 										</table>
 									</div>
@@ -261,47 +235,13 @@
 		</div>
 
 		<!-- Scripts -->
-			<script>
-			// Get modal elements
-			const modal = document.getElementById("myModal");
-			const addBtn = document.getElementById("addCourse");
-			const closeBtn = document.getElementsByClassName("close")[0];
-			const confirmBtn = document.getElementById("confirmAccept");
-			const cancelBtn = document.getElementById("cancelAccept");
 
-			// When user clicks Accept button, open modal 
-			addBtn.onclick = function() {
-				modal.style.display = "block";
-			}
-
-			// When user clicks on (x), close modal
-			closeBtn.onclick = function() {
-				modal.style.display = "none";
-			}
-
-			// When user clicks Cancel button in modal, close modal
-			cancelBtn.onclick = function() {
-				modal.style.display = "none";
-			}
-
-			// When user clicks Confirm button in modal
-			confirmBtn.onclick = function() {
-				alert("Changes accepted!"); // Replace with your actual accept logic
-				modal.style.display = "none";
-			}
-
-			// When user clicks anywhere outside modal, close it
-			window.onclick = function(event) {
-				if (event.target == modal) {
-				modal.style.display = "none";
-				}
-			}
-			</script>
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+			<script src="src/assets/js/jquery.min.js"></script>
+			<script src="src/assets/js/registrationDynamic.js"></script>
+			<script src="src/assets/js/browser.min.js"></script>
+			<script src="src/assets/js/breakpoints.min.js"></script>
+			<script src="src/assets/js/util.js"></script>
+			<script src="src/assets/js/main.js"></script>
 
 	</body>
 </html>

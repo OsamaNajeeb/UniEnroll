@@ -58,10 +58,28 @@ const UserSchema = new mongoose.Schema({
   password: { type: String, required: true },
 });
 
+const RegistrationSchema = new mongoose.Schema({
+  studentId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+  courseCode: String,
+  courseName: String,
+  credits: Number,
+  instructor: String,
+  status: String, // "Registered", "Waitlisted", etc.
+  registeredAt: { type: Date, default: Date.now },
+});
+
+const CourseSchema = new mongoose.Schema({
+  courseCode: String,
+  courseName: String,
+  credits: Number,
+  instructor: String,
+});
+
 const User = mongoose.model("User", UserSchema);
 const Enrollment = mongoose.model("Enrollment", EnrollmentSchema);
+const Registration = mongoose.model("Registration", RegistrationSchema);
+const Course = mongoose.model("Course", CourseSchema);
 
-// ===== API routes =====
 app.post("/api/enrollments", async (req, res) => {
   try {
     const newEnrollment = new Enrollment(req.body);
@@ -122,6 +140,85 @@ app.post("/api/auth/login", async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
+});
+
+app.get("/api/registrations/:username", async (req, res) => {
+  try {
+    const user = await User.findOne({ username: req.params.username });
+    if (!user) return res.status(404).json({ error: "User not found" });
+
+    const registrations = await Registration.find({ studentId: user._id });
+    res.json(registrations);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.post("/api/dev/seed-registrations", async (req, res) => {
+  const user = await User.findOne({ username: "osa203" });
+
+  if (!user) {
+    return res
+      .status(404)
+      .json({ error: "User 'osa203' not found. Please sign up first." });
+  }
+
+  const seedData = [
+    {
+      studentId: user._id,
+      courseCode: "CS101",
+      courseName: "Intro to Computer Science",
+      credits: 3,
+      instructor: "Dr. Alan Smith",
+      status: "Registered",
+    },
+    {
+      studentId: user._id,
+      courseCode: "ENG103",
+      courseName: "English Composition",
+      credits: 2,
+      instructor: "Dr. William King",
+      status: "Waitlisted",
+    },
+  ];
+
+  await Registration.insertMany(seedData);
+  res.json({ message: "Seeded!" });
+});
+
+app.get("/api/courses", async (req, res) => {
+  try {
+    const courses = await Course.find();
+    res.json(courses);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.post("/api/dev/seed-courses", async (req, res) => {
+  const seedCourses = [
+    {
+      courseCode: "CS201",
+      courseName: "Advanced Computer",
+      credits: 3,
+      instructor: "Dr. Umbreen",
+    },
+    {
+      courseCode: "MATH201",
+      courseName: "Calculus III",
+      credits: 4,
+      instructor: "Prof. Jane Doe",
+    },
+    {
+      courseCode: "ENGR104",
+      courseName: "Advanced Physics",
+      credits: 4,
+      instructor: "Prof. Sam Jetstream",
+    },
+  ];
+
+  await Course.insertMany(seedCourses);
+  res.json({ message: "Courses seeded!" });
 });
 
 const PORT = process.env.PORT || 5000;
