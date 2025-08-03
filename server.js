@@ -46,13 +46,6 @@ mongoose.connection.on("disconnected", () => {
 connectDB();
 
 // ===== Mongoose Schemas =====
-const EnrollmentSchema = new mongoose.Schema({
-  studentName: String,
-  course: String,
-  semester: String,
-  enrollmentDate: { type: Date, default: Date.now },
-});
-
 const UserSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
@@ -76,28 +69,8 @@ const CourseSchema = new mongoose.Schema({
 });
 
 const User = mongoose.model("User", UserSchema);
-const Enrollment = mongoose.model("Enrollment", EnrollmentSchema);
 const Registration = mongoose.model("Registration", RegistrationSchema);
 const Course = mongoose.model("Course", CourseSchema);
-
-app.post("/api/enrollments", async (req, res) => {
-  try {
-    const newEnrollment = new Enrollment(req.body);
-    const savedEnrollment = await newEnrollment.save();
-    res.status(201).json(savedEnrollment);
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-});
-
-app.get("/api/enrollments", async (req, res) => {
-  try {
-    const enrollments = await Enrollment.find().sort({ enrollmentDate: -1 });
-    res.json(enrollments);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
 
 app.post("/api/auth/signup", async (req, res) => {
   const { username, password } = req.body;
@@ -155,37 +128,59 @@ app.get("/api/registrations/:username", async (req, res) => {
 });
 
 app.post("/api/dev/seed-registrations", async (req, res) => {
-  const user = await User.findOne({ username: "osa203" });
+  try {
+    const users = await User.find();
 
-  if (!user) {
-    return res
-      .status(404)
-      .json({ error: "User 'osa203' not found. Please sign up first." });
+    if (users.length === 0) {
+      return res
+        .status(404)
+        .json({ error: "No users found. Please sign up some users first." });
+    }
+
+    const seedCourses = [
+      {
+        courseCode: "CS101",
+        courseName: "Intro to Computer Science",
+        credits: 3,
+        instructor: "Dr. Alan Smith",
+        status: "Registered",
+      },
+      {
+        courseCode: "ENG103",
+        courseName: "English Composition",
+        credits: 2,
+        instructor: "Dr. William King",
+        status: "Waitlisted",
+      },
+    ];
+
+    const allRegistrations = [];
+
+    for (const user of users) {
+      for (const course of seedCourses) {
+        const exists = await Registration.findOne({
+          studentId: user._id,
+          courseCode: course.courseCode,
+        });
+
+        if (!exists) {
+          allRegistrations.push({
+            studentId: user._id,
+            ...course,
+          });
+        }
+      }
+    }
+
+    if (allRegistrations.length > 0) {
+      await Registration.insertMany(allRegistrations);
+    }
+
+    res.json({ message: `Seeded for ${users.length} users` });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
-
-  const seedData = [
-    {
-      studentId: user._id,
-      courseCode: "CS101",
-      courseName: "Intro to Computer Science",
-      credits: 3,
-      instructor: "Dr. Alan Smith",
-      status: "Registered",
-    },
-    {
-      studentId: user._id,
-      courseCode: "ENG103",
-      courseName: "English Composition",
-      credits: 2,
-      instructor: "Dr. William King",
-      status: "Waitlisted",
-    },
-  ];
-
-  await Registration.insertMany(seedData);
-  res.json({ message: "Seeded!" });
 });
-
 app.get("/api/courses", async (req, res) => {
   try {
     const courses = await Course.find();
@@ -219,6 +214,62 @@ app.post("/api/dev/seed-courses", async (req, res) => {
 
   await Course.insertMany(seedCourses);
   res.json({ message: "Courses seeded!" });
+});
+
+app.post("/api/registrations/add", async (req, res) => {
+  const { username, courseCode } = req.body;
+
+  try {
+    const user = await User.findOne({ username });
+    if (!user) return res.status(404).json({ error: "User not found" });
+
+    const course = await Course.findOne({ courseCode });
+    if (!course) return res.status(404).json({ error: "Course not found" });
+
+    const existing = await Registration.findOne({
+      studentId: user._id,
+      courseCode,
+    });
+    if (existing)
+      return res
+        .status(400)
+        .json({ error: "Already registered or waitlisted" });
+
+    const newRegistration = new Registration({
+      studentId: user._id,
+      courseCode: course.courseCode,
+      courseName: course.courseName,
+      credits: course.credits,
+      instructor: course.instructor,
+      status: "Registered",
+    });
+
+    await newRegistration.save();
+    res.status(201).json({ message: "Course registered successfully" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.delete("/api/registrations/:id", async (req, res) => {
+  try {
+    await Registration.findByIdAndDelete(req.params.id);
+    res.status(200).json({ message: "Registration removed" });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.get("/api/courseview/:username", async (req, res) => {
+  try {
+    const user = await User.findOne({ username: req.params.username });
+    if (!user) return res.status(404).json({ error: "User not found" });
+
+    const registrations = await Registration.find({ studentId: user._id });
+    res.json(registrations);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
 
 const PORT = process.env.PORT || 5000;

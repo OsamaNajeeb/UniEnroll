@@ -22,10 +22,10 @@ cancelBtn.onclick = function () {
 };
 
 // When user clicks Confirm button in modal
-confirmBtn.onclick = function () {
-  alert("Changes accepted!"); // Replace with your actual accept logic
-  modal.style.display = "none";
-};
+// confirmBtn.onclick = function () {
+//   alert("Changes accepted!"); // Replace with your actual accept logic
+//   modal.style.display = "none";
+// };
 
 // When user clicks anywhere outside modal, close it
 window.onclick = function (event) {
@@ -46,16 +46,46 @@ async function loadRegistrations() {
   data.forEach((reg) => {
     const tr = document.createElement("tr");
     tr.innerHTML = `
-						<td>${reg.courseCode}</td>
-						<td>${reg.courseName}</td>
-						<td>${reg.credits}</td>
-						<td>${reg.instructor}</td>
-						<td>${reg.status}</td>
-						<td><a href="#" class="button small ${
-              reg.status === "Registered" ? "" : "disabled"
-            }">${reg.status === "Registered" ? "Drop" : "N/A"}</a></td>
-					`;
+  <td>${reg.courseCode}</td>
+  <td>${reg.courseName}</td>
+  <td>${reg.credits}</td>
+  <td>${reg.instructor}</td>
+  <td>${reg.status}</td>
+  <td>
+    ${
+      reg.status === "Registered"
+        ? `<a href="#" class="button small drop-course-btn" data-id="${reg._id}">Drop</a>`
+        : "N/A"
+    }
+  </td>
+`;
     tbody.appendChild(tr);
+  });
+
+  document.querySelectorAll(".drop-course-btn").forEach((btn) => {
+    btn.onclick = async (e) => {
+      e.preventDefault();
+      const id = btn.dataset.id;
+      const confirmDrop = confirm("Are you sure you want to drop this course?");
+      if (!confirmDrop) return;
+
+      try {
+        const res = await fetch(`/api/registrations/${id}`, {
+          method: "DELETE",
+        });
+
+        const data = await res.json();
+
+        if (res.ok) {
+          alert("Course dropped successfully!");
+          loadRegistrations(); // Refresh the table
+        } else {
+          alert("Failed to drop course: " + data.error);
+        }
+      } catch (err) {
+        alert("Network error: " + err.message);
+      }
+    };
   });
 }
 
@@ -80,13 +110,33 @@ async function loadAvailableCourses() {
     modalTableBody.appendChild(row);
   });
 
-  // Optional: add click event to handle "Add"
   document.querySelectorAll(".add-course-btn").forEach((btn) => {
-    btn.onclick = (e) => {
+    btn.onclick = async (e) => {
       e.preventDefault();
       const courseCode = btn.closest("tr").children[0].textContent;
-      console.log("Add course:", courseCode);
-      // Optional: send a request to register
+
+      try {
+        const res = await fetch("/api/registrations/add", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            username: localStorage.getItem("username"),
+            courseCode,
+          }),
+        });
+
+        const data = await res.json();
+
+        if (res.ok) {
+          alert("Course added successfully!");
+          modal.style.display = "none";
+          loadRegistrations(); // Refresh main table
+        } else {
+          alert("Failed to add course: " + data.error);
+        }
+      } catch (err) {
+        alert("Network error: " + err.message);
+      }
     };
   });
 }

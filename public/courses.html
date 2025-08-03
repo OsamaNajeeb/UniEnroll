@@ -80,7 +80,7 @@
 								<section>
 									<header>
 										<h2>Current Courses</h2>
-										<h3>View and manage your courses</h3>
+										<h3>View your active courses</h3>
 									</header>
 
 									<!-- Registration Table -->
@@ -92,31 +92,10 @@
 													<th>Course Name</th>
 													<th>Credits</th>
 													<th>Instructor</th>
-													<th>Status</th>
 												</tr>
 											</thead>
 											<tbody>
-												<tr>
-													<td>CS101</td>
-													<td>Intro to Computer Science</td>
-													<td>3</td>
-													<td>Dr. Alan Smith</td>
-													<td>Registered</td>
-												</tr>
-												<tr>
-													<td>MATH201</td>
-													<td>Calculus II</td>
-													<td>4</td>
-													<td>Prof. Jane Doe</td>
-													<td>Registered</td>
-												</tr>
-												<tr>
-													<td>ENG103</td>
-													<td>English Composition</td>
-													<td>2</td>
-													<td>Dr. William King</td>
-													<td>Waitlisted</td>
-												</tr>
+												<!--This part ChatGPT-->
 											</tbody>
 										</table>
 									</div>
@@ -248,47 +227,12 @@
 		</div>
 
 		<!-- Scripts -->
-			<script>
-			// Get modal elements
-			const modal = document.getElementById("myModal");
-			const addBtn = document.getElementById("addCourse");
-			const closeBtn = document.getElementsByClassName("close")[0];
-			const confirmBtn = document.getElementById("confirmAccept");
-			const cancelBtn = document.getElementById("cancelAccept");
-
-			// When user clicks Accept button, open modal 
-			addBtn.onclick = function() {
-				modal.style.display = "block";
-			}
-
-			// When user clicks on (x), close modal
-			closeBtn.onclick = function() {
-				modal.style.display = "none";
-			}
-
-			// When user clicks Cancel button in modal, close modal
-			cancelBtn.onclick = function() {
-				modal.style.display = "none";
-			}
-
-			// When user clicks Confirm button in modal
-			confirmBtn.onclick = function() {
-				alert("Changes accepted!"); // Replace with your actual accept logic
-				modal.style.display = "none";
-			}
-
-			// When user clicks anywhere outside modal, close it
-			window.onclick = function(event) {
-				if (event.target == modal) {
-				modal.style.display = "none";
-				}
-			}
-			</script>
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+			<script src="src/assets/js/jquery.min.js"></script>
+			<script src="src/assets/js/browser.min.js"></script>
+			<script src="src/assets/js/courseDynamic.js"></script>
+			<script src="src/assets/js/breakpoints.min.js"></script>
+			<script src="src/assets/js/util.js"></script>
+			<script src="src/assets/js/main.js"></script>
 
 	</body>
 </html>
